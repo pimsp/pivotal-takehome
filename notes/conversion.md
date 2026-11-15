@@ -17,5 +17,13 @@ What this adds: the record of this folder's conversion to Kiteline (branch `agen
 
 ## Tickets and dropped content
 
-- No tickets: the sources hold no open tasks, and the owner asked for suggestions instead of todos.
+- No tickets: the sources hold no open tasks, and the owner's comment on the conversion asked for suggestions
+  instead of todos.
 - Nothing dropped, nothing archived.
+
+## Checker
+
+- Taken: roleMain's project line now repeats PROJECT.md's "no tickets beyond the task", so its Dispatch bullet can't
+  be read against it.
+- Rejected: dropping "the checks" from CLAUDE.md now that PROJECT.md has no Checks line. The stub's text is fixed by
+  the conversion and applies to every Kiteline project.

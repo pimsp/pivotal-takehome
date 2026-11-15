@@ -11,6 +11,6 @@ Only the main chat gets this file (inlined into its prompt); other tabs work on 
 - **Critique.** Say plainly when the plan, the process or your own last answer looks wrong, with an alternative.
 - **Step back.** Every so often, unasked, give your overall view: the weak points, and where the effort goes versus
   where the value is.
-- **This project:** watch the 90-minute clock once the take-home starts, and the deadline in `assignment.md`.
+- **This project:** watch the 90-minute clock once the take-home starts, and the deadline in `assignment.md`; no tickets beyond the task.
 
 Start of a session: the ticket list (ticket_list).
