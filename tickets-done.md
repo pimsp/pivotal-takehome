@@ -2,6 +2,10 @@
 
 Closed tickets, newest first. Reopen with `scripts/tickets.js reopen <id>`.
 
+- [x] #4 !3 Set git origin  owner:user  assignee:claude  started:2026-11-15  revised:2026-11-15  closed:2026-11-15
+    Set git origin to git@github.com:pimsp/pivotal-takehome.git
+    Done 2026-11-15: Added remote origin = git@github.com:pimsp/pivotal-takehome.git (git remote add, run from this tab's worktree). Remotes live in the shared .git config, so it applies to the main checkout too. Not pushed or fetched; pushing is done with the app button.
+
 - [x] #3 !3 Download relevant video  owner:user  assignee:claude  started:2026-11-15  revised:2026-11-15  closed:2026-11-15
     Earlier in the application process, we had to watch https://www.youtube.com/watch?v=K5hELUspWq8
     Download its transcript
