@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Replay a failing run (soupsieve) through the commit-first hook. You type the two verdicts.
+set -euo pipefail
+cd "$(dirname "$0")"
+F=data/raw/data/tool-00000-of-00008.parquet
+[ -f "$F" ] || F=/home/pim/Documents/pivotal-takehome.worktrees/6-download-data-inspect/data/raw/data/tool-00000-of-00008.parquet
+exec uv run -q --python 3.13 --with pandas --with pyarrow python -I code/hook/replay.py "$F" --runs facelessuser__soupsieve.a8080d97.func_pm_remove_cond__0nmyui1x.8qa84d2e "$@"
