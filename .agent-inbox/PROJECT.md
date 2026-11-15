@@ -2,12 +2,11 @@
 
 A clean project for one timed take-home: 90 minutes, due Sun 15 Nov 2026 at 14:54 Cambridge time. The task text
 and the work live here only; nothing from ~/Documents/career is brought in. The invitation (mentors, time, deadline,
-what's needed) is in `assignment.md`.
+what's needed) is in `assignment.md`. When the take-home starts, you will get the full task description.
 
 - **Role:** collaborator. AI use is allowed for this task and the full Claude transcripts go in with it, so keep
-  all of the work in this project's tabs and write as if the reviewer reads every turn.
+  all of the work in this project's tabs. You can help prepare for the take-home.
 - **Differs from the global rules:** the task's own instructions on scope, time and submission win over anything
   here. No tickets beyond the task itself.
-- **Checks:** none. **Quiet hours:** none.
 - **Python:** 3.13 through uv (the system Python is 3.12): `uv venv --python 3.13` once in the work folder, then
   run everything with `uv run …` and add packages with `uv pip install …`.

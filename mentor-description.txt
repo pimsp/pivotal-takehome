@@ -1,0 +1,39 @@
+Bio: Preeti Ravindra
+Preeti is an applied research leader who has delivered security outcomes by ensuring AI systems are reliable, safe and secure for over a decade across Fortune 500 and scaleups. As a recognized industry voice, Preeti holds multiple patents and publications in AI security, and speaks at popular industry and academic venues like Defcon, [un]prompted, ICML. She is currently focused on building and deploying effective AI control systems which account for human factors complementing technical measures.
+
+Bio: Jess Bergs
+I’m an engineering lead at the UK AI Security Institute for our human-in-the-loop research tools, enabling our scientists to run their empirical research experiments at scale.
+
+My career so far has been in R&D and public sector innovation, from EU Horizon projects to Explainable AI at BBC R&D and since 2024 technical AI safety in the British government.
+
+Projects
+Human in the loop in its current form is not an effective oversight mechanism. In AI Agents Push Humans Out of the Loop, Mitchell et al. argue that a top priority in the advancement of AI agents should be supporting the situated goals and cognitive requirements of effective human oversight, treating the human needs of overseers at the same level of importance as AI agent capability and compatibility with other agents. Currently, only frameworks exist but barely any empirical evidence. 
+
+Fellows will work on empirically testing scalable oversight systems that consider humans as first-class citizens in oversight mechanisms, especially for automated R&D tasks like alignment research. 
+
+If this goes exceptionally well, it could provide a practical evidence base for designing effective scalable oversight with human factors in mind and complementary control systems for increasingly autonomous agents. This research will inform how labs and enterprises alike can allocate scarce human attention in AI control and automated alignment research thereby reducing the risk from strong monitoring systems failing on consequential real-world tasks.
+
+Mitchell, Margaret, Avijit Ghosh, and Samir Passi. ‘AI Agents Push Humans Out of the Loop’. arXiv:2608.23642. Preprint, arXiv, 2 September 2026. https://doi.org/10.48550/arXiv.2608.23642.
+
+Other related papers:
+
+Xu, Yuzheng, Annya Dahmani, Matthew D. Blanchard, et al. ‘Toward Human-AI Complementarity Across Diverse Tasks’. arXiv:2605.04070. Preprint, arXiv, 13 April 2026. https://doi.org/10.48550/arXiv.2605.04070.
+
+Bowkis, Aleksandr, Marie Davidsen Buhl, Jacob Pfau, and Geoffrey Irving. ‘Automated Alignment Is Harder than You Think’. arXiv:2605.06390. Preprint, arXiv, 14 May 2026. https://doi.org/10.48550/arXiv.2605.06390.
+
+Voudouris, Konstantinos, Xavier Roberts-Gaal, Marie Buhl, Geoffrey Irving, and Christopher Summerfield. ‘AI Alignment Is a Human Problem’. Zqngj_v1. Preprint, PsyArXiv, 30 May 2026. https://osf.io/preprints/psyarxiv/zqngj_v1/.
+
+What We're Looking for in a Mentee
+Excellent communicator
+Proactive and able to turn plans into results
+Experience with empirical research
+What We're Like as Mentors
+We mainly provide high-level guidance, but are also happy to help with hands-on engineering questions and pair programming.
+
+Past fellows valued clear and strategic guidance on project scoping and research direction, and detailed feedback on experiment design and technical setups.
+
+We’ll have weekly group sessions but will also be available for 1:1s to talk through anything you might want feedback on
+
+Testimonials from past mentees - https://www.linkedin.com/in/preeti-ravindra/details/recommendations/
+
+Past projects from mentors - https://sparai.org/projects/f26/recyQRpX2HbOZfHYp/, https://arxiv.org/pdf/2607.14570, https://prism-research.org/projects
