@@ -1,0 +1,203 @@
+commit d2aa73dc99a05fd445e24c267ef56218a2c83771
+Date: 2026-11-15T11:56:18+00:00
+Author: Pim Spelier
+
+Add the beginning screenshot (linked from the gist)
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+
+ .../Screenshot from 2026-11-15 10-37-46.png            | Bin 0 -> 404272 bytes
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+commit 304556ce19d053b54f2c60557047678cb03e5cd7
+Date: 2026-11-15T11:42:51+00:00
+Author: Pim Spelier
+
+Merge tab/main-chat (Kiteline tab)
+
+commit a7f626b70cfca66ab475a3873ddbb01c1088577f
+Date: 2026-11-15T11:40:08+00:00
+Author: Pim Spelier
+
+Fix interactive review: separate read/write handles on /dev/tty; ignore __pycache__
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+
+ .gitignore                                   |   1 +
+ code/hook/__pycache__/replay.cpython-313.pyc | Bin 12759 -> 0 bytes
+ code/hook/commit_first.py                    |  12 +++++++-----
+ 3 files changed, 8 insertions(+), 5 deletions(-)
+commit 6af2c49bde278e6b2f42c86311994fee7299fd17
+Date: 2026-11-15T11:39:49+00:00
+Author: Pim Spelier
+
+Add ./demo-1 (passing bleach run) and ./demo-2 (failing soupsieve run)
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+
+ demo-1 | 7 +++++++
+ demo-2 | 7 +++++++
+ 2 files changed, 14 insertions(+)
+commit 8c92ac7ecfbed94525ce8bc25172c0f7dcde530c
+Date: 2026-11-15T11:36:55+00:00
+Author: Pim Spelier
+
+Merge tab/main-chat (Kiteline tab)
+
+commit 4324d84f2b78b7f2b25f694b894b41d5eefb8050
+Date: 2026-11-15T11:33:52+00:00
+Author: Pim Spelier
+
+Demo replay output: verdicts and hidden labels for bleach and tornado runs
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+
+ results/labels.jsonl   | 2 ++
+ results/verdicts.jsonl | 2 ++
+ 2 files changed, 4 insertions(+)
+commit 72bed3e75d5d2e7619db4fbaead297a32b179086
+Date: 2026-11-15T11:33:52+00:00
+Author: Pim Spelier
+
+Merge main into tab/main-chat (keep /data/ ignore)
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+commit 6514a9d65c56f68d6d1e91e268ccfb66920035f4
+Date: 2026-11-15T11:29:37+00:00
+Author: Pim Spelier
+
+Tickets: #7 added, claimed, closed (Kiteline tab main-chat)
+
+
+ tickets-done.md | 4 ++++
+ 1 file changed, 4 insertions(+)
+commit c2e18f694d11ba7a4965e64bf7f6549c65843c31
+Date: 2026-11-15T11:29:21+00:00
+Author: Pim Spelier
+
+Hook per pim-ideas.txt: two-submit flow, resolved shown as test result, --pretty and --verdicts, agent CLAUDE.md; Part B judges patch quality
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+
+ DECISIONS.md                                 |   3 +-
+ code/hook/AGENT_CLAUDE.md                    |  11 +++++++
+ code/hook/__pycache__/replay.cpython-313.pyc | Bin 0 -> 12759 bytes
+ code/hook/commit_first.py                    |  13 +++++++--
+ code/hook/replay.py                          |  41 +++++++++++++++++++++++----
+ github-gist-contents/part-b-study-design.md  |  16 ++++++-----
+ 6 files changed, 67 insertions(+), 17 deletions(-)
+commit 6a684ce6fdd202513dbced482204488053983cb9
+Date: 2026-11-15T11:27:04+00:00
+Author: Pim Spelier
+
+pim-ideas.txt: mark the live ticket/CLAUDE.md/worktree pipeline as not built
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+
+ pim-ideas.txt | 45 +++++++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 45 insertions(+)
+commit 3f9dd4bc82162d8014a4c590f93111ec247b325e
+Date: 2026-11-15T11:27:01+00:00
+Author: Pim Spelier
+
+Merge tab/6-download-data-inspect (Kiteline tab)
+
+commit 43fae99b1edbcac50912f9903e8360938e748213
+Date: 2026-11-15T11:26:56+00:00
+Author: Pim Spelier
+
+Merge main into tab/main-chat (Kiteline, start of a turn)
+
+commit 333b0c6d5a9db25779088eeacc922e649287f3d3
+Date: 2026-11-15T11:25:25+00:00
+Author: Pim Spelier
+
+Tickets: #6 claimed, closed (Kiteline tab 6-download-data-inspect)
+
+
+ tickets-done.md | 4 ++++
+ tickets.md      | 3 ---
+ 2 files changed, 4 insertions(+), 3 deletions(-)
+commit d2d8ee308a0c282afe3c9e41a382553c2eeccdbf
+Date: 2026-11-15T11:25:07+00:00
+Author: Pim Spelier
+
+Download scripts and first inspection of SWE-smith trajectories (tool split) and tasks
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+
+ .gitignore                      |  1 +
+ code/data/download.py           | 26 ++++++++++++++++++
+ code/data/inspect_basic.py      | 14 ++++++++++
+ code/data/inspect_confidence.py | 41 ++++++++++++++++++++++++++++
+ code/data/inspect_dig.py        | 46 ++++++++++++++++++++++++++++++++
+ code/data/inspect_msgs.py       | 13 +++++++++
+ code/data/inspect_patch.py      | 23 ++++++++++++++++
+ code/data/inspect_stats.py      | 55 ++++++++++++++++++++++++++++++++++++++
+ code/data/list_files.py         |  8 ++++++
+ code/data/show_tail.py          |  6 +++++
+ notes/data.md                   | 59 +++++++++++++++++++++++++++++++++++++++++
+ 11 files changed, 292 insertions(+)
+commit 2041895c31cdc83850160571b143f8c90eb514fc
+Date: 2026-11-15T11:24:22+00:00
+Author: Pim Spelier
+
+Part B study design draft
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+
+ github-gist-contents/part-b-study-design.md | 34 +++++++++++++++++++++++++++++
+ 1 file changed, 34 insertions(+)
+commit da8a5b81adf8f1e389fc287878123f1d288e353d
+Date: 2026-11-15T11:23:46+00:00
+Author: Pim Spelier
+
+Commit-first review hook (Claude Code PreToolUse) and replayer for SWE-smith trajectories
+
+Diff comes from the run's own submit preview (patch column is misaligned with runs),
+minus scratch files the agent deleted; summary is the longest of the last 6 thoughts.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+
+
+ .gitignore                      |   1 +
+ code/hook/commit_first.py       |  88 ++++++++++++++++++++++++++++
+ code/hook/replay.py             | 127 ++++++++++++++++++++++++++++++++++++++++
+ code/hook/settings.example.json |  10 ++++
+ 4 files changed, 226 insertions(+)
+commit 6629bb7fe8caaf85d6325b49b272e55c1544e96e
+Date: 2026-11-15T11:17:32+00:00
+Author: Pim Spelier
+
+Tickets: #6 added (Kiteline tab main-chat)
+
+
+ tickets.md | 3 +++
+ 1 file changed, 3 insertions(+)
+commit f8bf906b0b79adadcfce75b48c064ccc24245330
+Date: 2026-11-15T11:04:01+00:00
+Author: Pim Spelier
+
+Tickets: #5 claimed, closed (Kiteline tab 5-record-the-walkthrough-video)
+
+
+ tickets-done.md | 17 +++++++++++++++++
+ tickets.md      |  3 ---
+ 2 files changed, 17 insertions(+), 3 deletions(-)
+commit 6663102544cae6866653ee30b59dc0b7b7a712fa
+Date: 2026-11-15T11:03:31+00:00
+Author: Pim Spelier
+
+Tickets: #5 added (Kiteline tab main-chat)
+
+
+ tickets.md | 3 +++
+ 1 file changed, 3 insertions(+)
