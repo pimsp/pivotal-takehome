@@ -38,12 +38,12 @@ def clip(text, n=MAX_LINES):
 
 SCRIPTED = [a for a in os.environ.get("COMMIT_FIRST_ANSWERS", "").split(",") if a]  # for tests only
 
-def ask(tty, prompt):
+def ask(tty, prompt, tty_in=None):
     if SCRIPTED:
         tty.write(prompt + SCRIPTED[0] + " (scripted)\n"); return ask_map(SCRIPTED.pop(0))
     while True:
         tty.write(prompt); tty.flush()
-        a = tty.readline().strip().lower()
+        a = tty_in.readline().strip().lower()
         if a in ("a", "approve"): return "approve"
         if a in ("d", "deny"): return "deny"
 
@@ -61,7 +61,9 @@ def main():
         return
     task, tests, summary = evidence(msgs)
     diff = ev.get("tool_input", {}).get("diff", "(no diff)")
-    tty = sys.stderr if SCRIPTED else open("/dev/tty", "r+")
+    # /dev/tty can't be opened "r+" in text mode (not seekable): one handle each way.
+    tty = sys.stderr if SCRIPTED else open("/dev/tty", "w")
+    tty_in = None if SCRIPTED else open("/dev/tty")
     bar = "=" * 78
     tty.write(f"\n{bar}\nCOMMIT-FIRST REVIEW  run {ev.get('session_id')}\n{bar}\n")
     tty.write(f"\n--- TASK ---\n{clip(task, 40)}\n")
@@ -75,10 +77,10 @@ def main():
     if not tests:
         tty.write("(the agent ran no tests)\n")
     t0 = time.time()
-    v1 = ask(tty, "\nVerdict on the evidence alone [a]pprove / [d]eny: ")
+    v1 = ask(tty, "\nVerdict on the evidence alone [a]pprove / [d]eny: ", tty_in)
     t1 = time.time()
     tty.write(f"\n--- AGENT'S SUMMARY (hidden until now) ---\n{clip(summary, 30)}\n")
-    v2 = ask(tty, f"\nYou said {v1}. Final verdict [a]pprove / [d]eny: ")
+    v2 = ask(tty, f"\nYou said {v1}. Final verdict [a]pprove / [d]eny: ", tty_in)
     t2 = time.time()
     os.makedirs(os.path.dirname(LOG) or ".", exist_ok=True)
     with open(LOG, "a") as f:
