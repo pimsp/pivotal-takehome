@@ -1,0 +1,10 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "submit|mcp__swe__submit",
+        "hooks": [{ "type": "command", "command": "python3 -I \"$CLAUDE_PROJECT_DIR\"/code/hook/commit_first.py", "timeout": 1800 }]
+      }
+    ]
+  }
+}
