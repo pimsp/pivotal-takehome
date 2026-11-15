@@ -9,3 +9,5 @@ what's needed) is in `assignment.md`.
 - **Differs from the global rules:** the task's own instructions on scope, time and submission win over anything
   here. No tickets beyond the task itself.
 - **Checks:** none. **Quiet hours:** none.
+- **Python:** 3.13 through uv (the system Python is 3.12): `uv venv --python 3.13` once in the work folder, then
+  run everything with `uv run …` and add packages with `uv pip install …`.
