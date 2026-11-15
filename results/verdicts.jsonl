@@ -1,0 +1,2 @@
+{"run": "mozilla__bleach.73871d76.func_pm_remove_cond__i81wmzms.8qa84d2e", "verdict_evidence": "approve", "verdict_final": "approve", "changed": false, "secs_evidence": 0.0, "secs_summary": 0.0, "n_test_runs": 2, "test_result": "PASSED", "ts": "2026-11-15T11:29:07"}
+{"run": "tornadoweb__tornado.d5ac65c1.func_pm_ctrl_shuffle__m6k63wps.8qa84d2e", "verdict_evidence": "approve", "verdict_final": "approve", "changed": false, "secs_evidence": 0.0, "secs_summary": 0.0, "n_test_runs": 14, "test_result": "PASSED", "ts": "2026-11-15T11:29:08"}
