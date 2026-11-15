@@ -55,6 +55,10 @@ def main():
     if ev.get("tool_name") not in SUBMIT_TOOLS:
         return  # not a submit: no output, Claude Code proceeds as normal
     msgs = load_transcript(ev.get("transcript_path"))
+    if not any(m["role"] == "tool" and m.get("tool_name") == "submit" for m in msgs):
+        # First submit: let it through; the submit tool itself answers with the diff and
+        # asks the agent to rerun its repro, delete scratch files and submit again.
+        return
     task, tests, summary = evidence(msgs)
     diff = ev.get("tool_input", {}).get("diff", "(no diff)")
     tty = sys.stderr if SCRIPTED else open("/dev/tty", "r+")
@@ -62,8 +66,11 @@ def main():
     tty.write(f"\n{bar}\nCOMMIT-FIRST REVIEW  run {ev.get('session_id')}\n{bar}\n")
     tty.write(f"\n--- TASK ---\n{clip(task, 40)}\n")
     tty.write(f"\n--- CODE CHANGE ---\n{clip(diff.replace(chr(13), ""), 80)}\n")
-    tty.write(f"\n--- TEST OUTPUT ({len(tests)} test runs by the agent; last 2 shown) ---\n")
-    for t in tests[-2:]:
+    result = ev.get("tool_input", {}).get("test_result")
+    if result:
+        tty.write(f"\n--- TEST SUITE (FAIL_TO_PASS + PASS_TO_PASS) ---\n{result}\n")
+    tty.write(f"\n--- AGENT'S OWN TEST RUNS ({len(tests)}; last 1 shown) ---\n")
+    for t in tests[-1:]:
         tty.write(f"$ {clip(t.get('tool_input'), 3)}\n{clip(t.get('tool_output'), 30)}\n\n")
     if not tests:
         tty.write("(the agent ran no tests)\n")
@@ -77,7 +84,7 @@ def main():
     with open(LOG, "a") as f:
         f.write(json.dumps({"run": ev.get("session_id"), "verdict_evidence": v1, "verdict_final": v2,
                             "changed": v1 != v2, "secs_evidence": round(t1 - t0, 1),
-                            "secs_summary": round(t2 - t1, 1), "n_test_runs": len(tests),
+                            "secs_summary": round(t2 - t1, 1), "n_test_runs": len(tests), "test_result": result,
                             "ts": time.strftime("%Y-%m-%dT%H:%M:%S")}) + "\n")
     print(json.dumps({"hookSpecificOutput": {
         "hookEventName": "PreToolUse",

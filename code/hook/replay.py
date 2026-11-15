@@ -4,10 +4,13 @@
 Each recorded tool call becomes a Claude Code PreToolUse event, sent to the hook
 on stdin, with the transcript so far in transcript_path. Only the run's final
 submit is reviewed (SWE-agent's first submit just shows the diff back to the agent).
-The outcome label (resolved) is never shown to the hook; replay writes it to
-results/labels.jsonl so verdicts can be scored later.
+Every submit goes to the hook; the hook reviews only the second one (the first is
+SWE-agent's "review your diff and clean up" step). The test result shown is the
+dataset's `resolved` column: the reviewer judges whether the patch is good, not
+whether it passes. --verdicts a,d,... pre-generates the reviewer's answers for a demo.
+--pretty samples only clean runs (see pretty()).
 
-usage: python -I code/hook/replay.py TRAJ.parquet [--runs ID ...] [--n 2] [--seed 0]
+usage: python -I code/hook/replay.py TRAJ.parquet [--runs ID ...] [--n 2] [--seed 0] [--pretty] [--verdicts a,d]
 """
 import argparse, ast, json, re, os, subprocess, sys, tempfile
 import pandas as pd
@@ -91,8 +94,10 @@ def replay(row, tmpdir):
                 with open(tpath, "w") as f:
                     f.write("\n".join(json.dumps(t) for t in transcript) + "\n")
                 ev = {"session_id": run, "transcript_path": tpath, "hook_event_name": "PreToolUse",
-                      "tool_name": "submit" if is_final else (name if name != "submit" else "submit_preview"),
-                      "tool_input": dict(args, diff=drop_removed(preview_diff(submit_ids, results), json.dumps(msgs))) if is_final else args}
+                      "tool_name": name,
+                      "tool_input": dict(args, diff=drop_removed(preview_diff(submit_ids, results), json.dumps(msgs)),
+                                         test_result="PASSED" if row.get("resolved") else "FAILED")
+                                    if is_final else args}
                 r = subprocess.run([sys.executable, "-I", HOOK], input=json.dumps(ev), capture_output=True, text=True)
                 n_events += 1
                 if is_final:
@@ -103,17 +108,41 @@ def replay(row, tmpdir):
                                    "tool_input": args.get("command", args), "tool_output": results.get(cid, "")})
     print(f"[replay] {run}: no submit call found after {n_events} events (run never submitted)")
 
+def pretty(row):
+    """A clean demo run: native tool calls, two submits, a small own diff, a real closing thought.
+    (Some runs call tools as text described in the system prompt; they have no tool_calls.)"""
+    msgs = json.loads(row["messages"])
+    subs = [cid for m in msgs if m.get("role") == "assistant" for cid, n, _ in calls_of(m) if n == "submit"]
+    if len(subs) != 2:
+        return False
+    res = {}
+    for m in msgs:
+        if m.get("role") == "tool":
+            for cid in lit(m.get("tool_call_ids")) or []:
+                res[cid] = text_of(m.get("content"))
+    d = drop_removed(preview_diff(subs, res), row["messages"])
+    if not d.startswith("diff --git") or not 5 < d.count("\n") < 80:
+        return False
+    thoughts = [text_of(m.get("content")) for m in msgs if m.get("role") == "assistant"][-6:]
+    return max((len(t) for t in thoughts), default=0) > 300
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("parquet"); ap.add_argument("--runs", nargs="*"); ap.add_argument("--n", type=int, default=2)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--pretty", action="store_true"); ap.add_argument("--verdicts")
     a = ap.parse_args()
     df = pd.read_parquet(a.parquet)
     if a.runs:
         key = "traj_id" if "traj_id" in df else "instance_id"
         df = df[df[key].isin(a.runs)]
     else:
-        df = df.sample(n=a.n, random_state=a.seed)
+        if a.pretty:
+            df = df.sample(n=min(len(df), 300), random_state=a.seed)
+            df = df[df.apply(pretty, axis=1)]
+        df = df.sample(n=min(a.n, len(df)), random_state=a.seed)
+    if a.verdicts:
+        os.environ["COMMIT_FIRST_ANSWERS"] = a.verdicts
     os.makedirs("results", exist_ok=True)
     with tempfile.TemporaryDirectory() as tmp:
         for _, row in df.iterrows():
