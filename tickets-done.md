@@ -2,6 +2,10 @@
 
 Closed tickets, newest first. Reopen with `scripts/tickets.js reopen <id>`.
 
+- [x] #6 !2 Download one SWE-smith-trajectories (tool split) file and the matching SWE-smith tasks, then answer Pim's data questions  owner:user  assignee:claude  started:2026-11-15  revised:2026-11-15  closed:2026-11-15  due:2026-11-15
+    Input for Part A (replaying recorded runs through the commit-first hook) and for the walkthrough's "problems in the data" section.
+    Done 2026-11-15: Done: findings in notes/data.md (branch tab/6-download-data-inspect, commit d2d8ee3), data in data/raw/ (git-ignored). Key points: (1) the trajectory `patch` column looks misaligned with its rows (2320 of 2364 non-empty patches touch files the run never mentions; 649 empty), so rebuild the agent's diff from its edit calls; SWE-smith's patch is the injected bug. (2) There are two tool-call formats in the tool split (2052 structured, 961 inline XML). (3) Submit usually happens twice. (4) Confident success claims barely predict resolved (phi 0.15; 53% vs 37%). (5) Resolved 47%; 160 instances have repeated runs.
+
 - [x] #5 !2 Work out how to record and host the 5-min walkthrough video on Pim's Linux laptop  owner:user  assignee:claude  started:2026-11-15  revised:2026-11-15  closed:2026-11-15  due:2026-11-15
     Needed for the take-home submission: a screen recording with voice, hosted so anyone with the link can view it. The recording slot is around 11:50-12:00 GMT today.
     Done 2026-11-15: Checklist (Ubuntu 24.04, GNOME 46, Wayland; checked read-only).
